@@ -2,6 +2,7 @@ using System.Net;
 using System.Text.Json;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 using Santander.HackerNewsApi.Caching;
 using Santander.HackerNewsApi.Models;
 
@@ -17,22 +18,22 @@ public sealed class HackerNewsClient : IHackerNewsClient
     private readonly HttpClient _http;
     private readonly IMemoryCache _memory;
     private readonly IDistributedCache _distributed;
-    private readonly IConfiguration _config;
+    private readonly HackerNewsOptions _options;
     private readonly SemaphoreSlim _itemsSemaphore;
 
     public HackerNewsClient(
         HttpClient http,
         IMemoryCache memory,
         IDistributedCache distributed,
-        IConfiguration config)
+        IOptions<HackerNewsOptions> options)
     {
         _http = http;
         _memory = memory;
         _distributed = distributed;
-        _config = config;
+        _options = options.Value;
 
-        var maxConcurrency = _config.GetValue("HackerNews:MaxItemFetchConcurrency", 8);
-        _itemsSemaphore = new SemaphoreSlim(Math.Max(1, maxConcurrency), Math.Max(1, maxConcurrency));
+        var maxConcurrency = Math.Max(1, _options.MaxItemFetchConcurrency);
+        _itemsSemaphore = new SemaphoreSlim(maxConcurrency, maxConcurrency);
     }
 
     public async Task<IReadOnlyList<long>> GetBestStoryIdsAsync(CancellationToken ct)
@@ -129,8 +130,8 @@ public sealed class HackerNewsClient : IHackerNewsClient
         }
     }
 
-    private int GetIdsTtlSeconds() => _config.GetValue("HackerNews:Cache:BestStoriesIdsSeconds", 30);
-    private int GetItemTtlSeconds() => _config.GetValue("HackerNews:Cache:ItemSeconds", 300);
+    private int GetIdsTtlSeconds() => _options.CacheBestStoriesIdsSeconds;
+    private int GetItemTtlSeconds() => _options.CacheItemSeconds;
 
     private void SetL1<T>(string key, T value, TimeSpan ttl)
         => _memory.Set(key, value, new MemoryCacheEntryOptions { AbsoluteExpirationRelativeToNow = ttl });

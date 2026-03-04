@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Options;
 using Santander.HackerNewsApi.Models;
 
 namespace Santander.HackerNewsApi.Services;
@@ -8,17 +9,17 @@ namespace Santander.HackerNewsApi.Services;
 public sealed class HackerNewsService : IHackerNewsService
 {
     private readonly IHackerNewsClient _client;
-    private readonly IConfiguration _config;
+    private readonly HackerNewsOptions _options;
 
-    public HackerNewsService(IHackerNewsClient client, IConfiguration config)
+    public HackerNewsService(IHackerNewsClient client, IOptions<HackerNewsOptions> options)
     {
         _client = client;
-        _config = config;
+        _options = options.Value;
     }
 
     public async Task<IReadOnlyList<BestStoryDto>> GetBestStoriesAsync(int n, CancellationToken ct)
     {
-        var maxN = _config.GetValue("HackerNews:MaxN", 200);
+        var maxN = _options.MaxN;
         n = Math.Clamp(n, 1, Math.Max(1, maxN));
 
         var ids = await _client.GetBestStoryIdsAsync(ct);
