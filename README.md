@@ -35,8 +35,16 @@ dotnet test
 - “first n best stories”: takes the first n IDs returned by `beststories.json`, then fetches details and sorts by score desc.
 - `commentCount` maps from `descendants` field in Hacker News items.
 
-## Possible improvements
-- Implement API authentication and authorization using OAuth2.
-- Implement more unit tests to cover more scenarios, as well as end-to-end tests
-- Health checks (Redis + upstream)
-- Observability (OpenTelemetry metrics/tracing)
+## Possible Future Improvements
+- **Authentication and authorization**  
+  Implement API security using OAuth2 or API keys to control access and protect the service.
+- **Extended test coverage**  
+  Add more unit tests covering edge cases and resilience scenarios, and possibly end-to-end tests validating the full request flow.
+- **Health checks**  
+  Expose health endpoints to monitor dependencies such as Redis and the Hacker News upstream API.
+- **Single-flight and stale-while-revalidate caching**  
+  Prevent multiple concurrent requests from fetching the same upstream resource when the cache is cold, and allow serving stale data while refreshing the cache in the background.
+- **Rate limiting**  
+  Apply request rate limiting to protect the API from abuse and reduce the risk of overloading the upstream Hacker News service.
+- **Observability and metrics**  
+  Add structured metrics and tracing (e.g OpenTelemetry) to monitor cache performance, upstream latency, retries, and circuit breaker behavior.
