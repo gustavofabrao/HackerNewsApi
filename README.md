@@ -1,4 +1,4 @@
-# Santander - Hacker News Best Stories API
+# Hacker News Best Stories API
 
 ASP.NET Core (.NET 8) REST API that returns the first **n best stories** from Hacker News (sorted by score desc).
 
@@ -36,6 +36,7 @@ dotnet test
 - `commentCount` maps from `descendants` field in Hacker News items.
 
 ## Possible improvements
-- Single-flight per cache key to avoid thundering herd on cold cache
+- Implement API authentication and authorization using OAuth2.
+- Implement more unit tests to cover more scenarios, as well as end-to-end tests
 - Health checks (Redis + upstream)
 - Observability (OpenTelemetry metrics/tracing)
