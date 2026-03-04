@@ -1,0 +1,29 @@
+######################################
+# Visual Studio per-user settings data
+######################################
+*.suo
+*.user
+.vs/
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
+*tempo*
+*Properties*
+aws-logger-errors*
+####################
+# Build/Test folders
+####################
+**/bin/
+**/obj/
+**/TestResults/
+**/Tempo/
+**/NuGet.exe
+**/buildlogs/
+**/packages
+**/globalPackages
+/src/globalPackages
+/src/Collection.Application/StyleCop.Cache
+/unit-test

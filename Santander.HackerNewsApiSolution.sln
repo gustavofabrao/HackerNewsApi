@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Santander.HackerNewsApi", "Santander.HackerNewsApi\Santander.HackerNewsApi.csproj", "{6D6F19EA-4D3D-4B85-9C50-6E0A0A8BB6E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Santander.HackerNewsApi.Tests", "Santander.HackerNewsApi.Tests\Santander.HackerNewsApi.Tests.csproj", "{B4EAFD1A-8B43-4F72-A3C1-7F79D4B927D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D6F19EA-4D3D-4B85-9C50-6E0A0A8BB6E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D6F19EA-4D3D-4B85-9C50-6E0A0A8BB6E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D6F19EA-4D3D-4B85-9C50-6E0A0A8BB6E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D6F19EA-4D3D-4B85-9C50-6E0A0A8BB6E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4EAFD1A-8B43-4F72-A3C1-7F79D4B927D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4EAFD1A-8B43-4F72-A3C1-7F79D4B927D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4EAFD1A-8B43-4F72-A3C1-7F79D4B927D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4EAFD1A-8B43-4F72-A3C1-7F79D4B927D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
