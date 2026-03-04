@@ -1,6 +1,6 @@
 # Hacker News Best Stories API
 
-ASP.NET Core (.NET 8) REST API that returns the first **n best stories** from Hacker News (sorted by score desc).
+ASP.NET Core (.NET 8) REST API that returns the first **n best stories** from Hacker News, sorted by score desc.
 
 ## Features
 - GET `/api/beststories?n=10`
