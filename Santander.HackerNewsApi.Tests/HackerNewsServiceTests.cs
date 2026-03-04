@@ -14,10 +14,10 @@ namespace Santander.HackerNewsApi.Tests;
 public class HackerNewsServiceTests
 {
     [Fact]
-    public async Task GetBestStoriesAsync_Should_Map_Filter_And_Sort_By_Score_Desc()
+    public async Task GetBestStoriesAsync_Should_Filter_And_Sort_By_Score_Desc()
     {
         // Arrange
-        var client = new Mock<IHackerNewsClient>(MockBehavior.Strict);
+        var client = new Mock<IHackerNewsClient>();
 
         client.Setup(c => c.GetBestStoryIdsAsync(It.IsAny<CancellationToken>()))
               .ReturnsAsync(new long[] { 1, 2, 3 });
@@ -55,7 +55,7 @@ public class HackerNewsServiceTests
     }
 
     [Fact]
-    public async Task GetBestStoriesAsync_Should_Clamp_N_To_MaxN()
+    public async Task GetBestStoriesAsync_Should_From_N_To_MaxN()
     {
         // Arrange
         var client = new Mock<IHackerNewsClient>(MockBehavior.Loose);
